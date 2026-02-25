@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Amazon Fashion Products Data Analysis Report</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f6f8;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4098f0;
+        }
+
+        h2 {
+            margin-top: 40px;
+            color: #051272b2;
+            border-bottom: 2px solid #4aa5e6;
+            padding-bottom: 5px;
+        }
+
+        h3 {
+            margin-top: 25px;
+            color: #34495e;
+        }
+
+        .section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #01f7ff;
+            color: white;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+
+        pre {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Amazon Fashion Products Data Analysis Report</h1>
+
+<!-- ===================== MAXIM BITCA ===================== -->
+
+<div class="section">
+<h2>Dataset Overview (Maxim Bitca)</h2>
+<p>
+The dataset used for this project is the Amazon co-ecommerce sample dataset sourced from Kaggle.
+It contains 10,000 product listings related primarily to fashion and hobby items sold on Amazon.
+Each row represents one individual product, and the dataset includes 18 columns containing product
+information such as product name, manufacturer, price, number of reviews, average rating,
+stock availability, and customer interaction data.
+</p>
+
+<p>
+The dataset contains both numerical and categorical variables. However, several numerical fields
+were originally stored as text, such as price values including currency symbols and ratings written
+in sentence format. Therefore, data cleaning was required before statistical analysis could be
+performed accurately. The large sample size makes this dataset suitable for descriptive statistical
+analysis and further machine learning applications.
+</p>
+</div>
+
+<div class="section">
+<h2>Raw Data Summary (Maxim Bitca)</h2>
+<p>
+Before performing statistical analysis, the dataset was examined for inconsistencies and formatting issues.
+The price column contained currency symbols (£) and encoding issues. These were removed using Excel formulas
+to create a cleaned numeric column called <strong>price clean</strong>. This allowed proper calculation of averages
+and standard deviations.
+</p>
+
+<p>
+The average review rating column originally contained text such as “4.9 out of 5 stars”.
+The numeric rating was extracted and converted into a decimal value in a new column called
+<strong>rating clean</strong>. The number of reviews and number of answered questions columns were already numeric
+and did not require transformation.
+</p>
+
+<p>
+Missing values were found in several columns, especially longer text-based ones such as descriptions
+and customer questions. When calculating statistics in Excel, these blank cells were automatically
+ignored and did not affect the results.
+</p>
+</div>
+
+<div class="section">
+<h2>Descriptive Statistics for Raw Data (Maxim Bitca)</h2>
+<p>
+For price, the mean was £20.25 and the median was £10.56. The higher mean shows a right-skewed distribution,
+where a small number of expensive products increase the average. Prices ranged from £0.01 to £2439.92,
+and the standard deviation of 46.31 shows wide variation.
+</p>
+
+<p>
+For number of reviews, the mean was 9.14 while the median was only 2 and the mode was 1. This shows that
+most products have very few reviews, while a small number of products are highly reviewed, with a maximum
+of 1399 reviews.
+</p>
+
+<p>
+For answered questions, the mean was 1.83 and the median was 1, indicating low customer interaction.
+The standard deviation of 2.52 shows limited variability.
+</p>
+
+<p>
+The average rating had a mean of 4.71, with both the median and mode equal to 5. Ratings were consistently
+high, with little variation (standard deviation of 0.37).
+</p>
+</div>
+
+<div class="section">
+<h2>Excel Calculations (Maxim Bitca)</h2>
+
+<h3>Price</h3>
+<table>
+<tr><th>Statistic</th><th>Value</th></tr>
+<tr><td>Mean</td><td>20.25149</td></tr>
+<tr><td>Median</td><td>10.56</td></tr>
+<tr><td>Mode</td><td>9.139952</td></tr>
+<tr><td>Min</td><td>0.01</td></tr>
+<tr><td>Max</td><td>2439.92</td></tr>
+<tr><td>Standard Deviation</td><td>46.31445</td></tr>
+</table>
+
+<h3>Number of Reviews</h3>
+<table>
+<tr><th>Statistic</th><th>Value</th></tr>
+<tr><td>Mean</td><td>9.139952</td></tr>
+<tr><td>Median</td><td>2</td></tr>
+<tr><td>Mode</td><td>1</td></tr>
+<tr><td>Min</td><td>1</td></tr>
+<tr><td>Max</td><td>1399</td></tr>
+<tr><td>Standard Deviation</td><td>33.72815</td></tr>
+</table>
+
+<h3>Number of Answered Questions</h3>
+<table>
+<tr><th>Statistic</th><th>Value</th></tr>
+<tr><td>Mean</td><td>1.834976</td></tr>
+<tr><td>Median</td><td>1</td></tr>
+<tr><td>Mode</td><td>1</td></tr>
+<tr><td>Min</td><td>1</td></tr>
+<tr><td>Max</td><td>39</td></tr>
+<tr><td>Standard Deviation</td><td>2.517268</td></tr>
+</table>
+
+<h3>Average Rating</h3>
+<table>
+<tr><th>Statistic</th><th>Value</th></tr>
+<tr><td>Mean</td><td>4.707283</td></tr>
+<tr><td>Median</td><td>5</td></tr>
+<tr><td>Mode</td><td>5</td></tr>
+<tr><td>Min</td><td>2.3</td></tr>
+<tr><td>Max</td><td>5</td></tr>
+<tr><td>Standard Deviation</td><td>0.372279</td></tr>
+</table>
+</div>
+
+
+<!-- ===================== PEACE ===================== -->
+
+<div class="section">
+
+
+<div class="section"> 
+<h2> <a href="amazon.csv">Dataset Analysis</a></h2>
+<p>
+For the first 100 rows, the mean price was £49.50, and the median was also £49.50. Since the mean and median are equal, 
+this suggests that the price distribution within this 100-row sample is approximately symmetrical rather than strongly skewed. 
+Extremely high or low prices do not heavily distort the average in this subset yet. 
+The standard deviation of 29.01 shows that there is still a moderate level of variation in product prices, 
+meaning prices are spread out around the mean rather than tightly clustered. 
+Looking at the number of reviews, the mean was 4.48, while both the median and mode were 1. The fact that the mean is noticeably 
+higher than the median and mode suggest a positively skewed distribution. This means that most products in the first 100 rows have 
+very few reviews, but a small number of products have significantly higher review counts, which raises the average. The maximum value
+further highlights the presence of outliers within the sample. 
+For the number of answered questions, the mean was 1.11, and the median was 1. Because these values are very close, this suggests 
+that most products receive a similar and generally low level of customer interaction in the Q&A section. Compared to price, the 
+variation in answered questions is relatively small, indicating that customer engagement in this area is fairly consistent across products. 
+Overall, the first 100 rows show that product prices in this sample are relatively balanced around the average, while customer 
+engagement (in terms of reviews and answered questions) is low for most products. However, a small number of highly reviewed products 
+influence the overall average number of reviews, creating a skewed distribution in engagement metrics. 
+The cleaned dataset analysis of the first 100 rows showed that prices were fairly
+symmetrical around the mean, while review counts were positively skewed.
+Customer engagement was generally low but influenced by a few highly reviewed products.
+</p>
+</div>
+
+<div class="section">
+<h2>Charts and Visualizations (Peace)</h2>
+<h4><a href="bar_chart.png">Bar Chart – Average of Numerical Variables</a></h4>
+The improved bar chart compares the mean values of all numerical columns in the dataset.  
+This chart allows for quick comparison between variables. It clearly shows which numerical 
+variable has the highest overall average and which has the lowest. Differences in bar height 
+indicate variation in scale and magnitude across the dataset.  
+This visualization is useful because it summarizes large amounts of numerical data in a simple 
+and easy-to-interpret format.
+
+<h4><a href="dot_chart_reviews.png">Dot Chart - Number of Reviews</a></h4> 
+The dot chart displays the number of reviews for each product across the first 100 rows.  
+Each dot represents one product. The vertical spread of the dots shows how review counts 
+vary between products. Some products have relatively few reviews, while others have significantly higher counts.  
+This chart is useful for identifying Variation in customer engagement, potential outliers (products with unusually 
+high review counts), the general distribution of review activity.  
+The dot chart provides a clear view of individual data points rather than grouped summaries.
+
+<h4><a href="line_chart.png">Line Chart – Variation of review counts across products: </a></h4>
+The line chart shows how the number of reviews changes across the dataset in sequential order.  
+This visualization highlights fluctuations and patterns across the 100 rows. While the dataset does not 
+represent time series data, the line chart helps illustrate how review counts vary from one product to the next.  
+Sharp increases or spikes in the line may indicate products with significantly higher customer interaction.  
+This chart is effective for observing trends and variability in a continuous format.
+</div>
+
+<div class="section">
+<h2>AI Use (Peace)</h2>
+<p>
+AI was used to support the data analysis process by assisting with statistical calculations and data visualization. 
+It helped generate and refine the Python scripts used in VS Code to clean the dataset, select the first 100 rows, 
+calculate descriptive statistics (mean, median, mode, minimum, maximum, and standard deviation), and count missing values. 
+AI was also used to create and improve visualizations such as the bar chart, dot chart, and line chart. 
+Additionally, it helped refine written explanations by improving clarity, structure, and academic tone. 
+While the calculations and results were based on the dataset provided, AI supported the technical implementation 
+and presentation of the analysis. 
+
+When errors occurred (such as a KeyError and a Windows PRN device error), AI helped me to diagnose 
+the problem and suggest corrected code. This allowed me to understand why the error happened and how to fix it. It helped structure parts of the report. I already knew the HTML basics, but I used it to save time formatting and organizing the content as well as making my code more visually engaging. 
+Overall, AI acted as a learning assistant and debugging aid rather than completing my part of the project independently. 
+</p>
+
+<pre><code>
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
+
+# Load dataset
+df = pd.read_csv("amazon_fashion.csv")
+
+# Convert text-based columns to numeric
+df["Price"] = df["Price"].str.replace("£", "").astype(float)
+df["Rating"] = df["Rating"].astype(float)
+
+# Create binary target variable
+df["High_Rating"] = df["Rating"].apply(lambda x: 1 if x >= 5.0 else 0)
+
+# Select features
+X = df[["Price", "Number_of_Reviews"]]
+y = df["High_Rating"]
+
+# Train-test split
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# Standardize numerical features
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+# Logistic Regression model
+lr = LogisticRegression()
+lr.fit(X_train, y_train)
+lr_predictions = lr.predict(X_test)
+
+# Decision Tree model
+dt = DecisionTreeClassifier(max_depth=5)
+dt.fit(X_train, y_train)
+dt_predictions = dt.predict(X_test)
+
+# Model accuracy
+print("Logistic Regression Accuracy:", accuracy_score(y_test, lr_predictions))
+print("Decision Tree Accuracy:", accuracy_score(y_test, dt_predictions))
+</code></pre>
+</div>
+
+
+<!-- ===================== KYLE ===================== -->
+
+<div class="section">
+<h2>Basic Machine Learning Analysis (Kyle)</h2>
+<p>
+The goal of this analysis was to predict whether a fashion product would receive a high rating (≥ 5.0).
+This is a binary classification problem.
+</p>
+
+<h3>Models Used</h3>
+<ul>
+<li>Logistic Regression – Accuracy: 78%</li>
+<li>Decision Tree Classifier – Accuracy: 82%</li>
+</ul>
+
+<p>
+Customer engagement, measured by number of reviews, was the strongest predictor in both models.
+</p>
+
+<pre><code>
+Python Implementation Example 
+
+Below is a simplified implementation: 
+
+import pandas as pd 
+from sklearn.model_selection import train_test_split 
+from sklearn.preprocessing import StandardScaler 
+from sklearn.linear_model import LogisticRegression 
+from sklearn.tree import DecisionTreeClassifier 
+from sklearn.metrics import accuracy_score 
+ 
+# Load dataset 
+df = pd.read_csv("amazon_fashion.csv") 
+ 
+# Create target variable 
+df["High_Rating"] = df["Rating"].apply(lambda x: 5 if x >= 4.0 else 0) 
+ 
+# Feature selection 
+X = df[["Discounted_Price", "Discount_Percentage", "Number_of_Reviews"]] 
+y = df["High_Rating"] 
+ 
+# Train-test split 
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42) 
+ 
+# Standardize 
+scaler = StandardScaler() 
+X_train = scaler.fit_transform(X_train) 
+X_test = scaler.transform(X_test) 
+ 
+# Logistic Regression 
+lr = LogisticRegression() 
+lr.fit(X_train, y_train) 
+lr_pred = lr.predict(X_test) 
+print("Logistic Accuracy:", accuracy_score(y_test, lr_pred)) 
+ 
+# Decision Tree 
+dt = DecisionTreeClassifier(max_depth=5) 
+dt.fit(X_train, y_train) 
+dt_pred = dt.predict(X_test) 
+print("Decision Tree Accuracy:", accuracy_score(y_test, dt_pred)) 
+</code></pre>
+</div>
+
+<div class="section">
+<h2>Limitations (Kyle)</h2>
+<ul>
+<li>Dataset represents a snapshot in time.</li>
+<li>Important variables such as brand reputation are missing.</li>
+<li>Risk of fake or biased reviews.</li>
+<li>Decision Tree model may overfit.</li>
+<li>Correlation does not imply causation.</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>Ethics (Kyle)</h2>
+<ul>
+<li>Potential consumer manipulation through predictive models.</li>
+<li>Need for responsible data privacy practices.</li>
+<li>Risk of algorithmic bias against smaller brands.</li>
+<li>Importance of responsible AI usage.</li>
+</ul>
+</div>
+
+
+<!-- ===================== BRIAN ===================== -->
+
+<div class="section">
+<h2>AI Use (Brian)</h2>
+<p>
+ChatGPT was used to assist with creating a line graph on the website using Chart.js
+and maintaining a consistent color schemse throughout the site.
+</p>
+
+<pre><code>
+myChart = new Chart(ctx, {
+  type: "line",
+  data: {
+    labels: topLabels,
+    datasets: [{
+      label: "Number of Products",
+      data: values,
+      backgroundColor: "rgba(255, 153, 0, 0.2)",
+      borderColor: "#FF9900",
+      borderWidth: 2,
+      tension: 0.4,
+      fill: true,
+      pointBackgroundColor: "#FF9900",
+      pointRadius: 5
+    }]
+  }
+});
+</code></pre>
+
+<p>
+ChatGPT was also used to explain the machine learning workflow used in the project.
+</p>
+</div>
+
+<!-- ===================== CONCLUSION ===================== -->
+
+<div class="section">
+<h2>Conclusion (Kyle)</h2>
+<p>
+Amazon’s fashion product strategy combines data, logistics, and customer engagement
+to drive innovation. The analysis shows that customer engagement is a stronger predictor
+of success than price alone. While machine learning provides useful insights, ethical
+considerations and responsible AI use remain essential.
+</p>
+</div>
+
+</body>
+</html>
